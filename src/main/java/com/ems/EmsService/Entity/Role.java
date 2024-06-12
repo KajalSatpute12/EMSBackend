@@ -1,6 +1,10 @@
 package com.ems.EmsService.Entity;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,26 +15,20 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employee")
-public class Employee {
+@Table(name = "role")
+public class Role {
 
     @Id
     @Column
     private Long id;
 
     @Column
-    private String first_name;
+    private String title;
 
     @Column
-    private String last_name;
+    private String salary;
 
     @Column
-    private String email_id;
-
-    @Column
-    private Long role_id;
-
-    @Column
-    private Long manager_id;
+    private String department_id;
 
 }
