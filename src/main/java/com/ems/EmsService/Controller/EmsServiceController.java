@@ -2,9 +2,11 @@ package com.ems.EmsService.Controller;
 
 import com.ems.EmsService.Entity.Employee;
 import com.ems.EmsService.Entity.Department;
+import com.ems.EmsService.Entity.Login;
 import com.ems.EmsService.Entity.Role;
 import com.ems.EmsService.Service.DepartmentService;
 import com.ems.EmsService.Service.EmployeeService;
+import com.ems.EmsService.Service.LoginService;
 import com.ems.EmsService.Service.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class EmsServiceController {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    LoginService loginService;
 
     // Save employee Details
     @Operation(tags="Save Methods")
@@ -163,4 +168,9 @@ public class EmsServiceController {
         return new ResponseEntity<>(roleService.deleteRoleDetails(id), HttpStatus.OK);
     }
 
+    @Operation(tags="Get Methods")
+    @GetMapping(path = "/getLoginDetails")
+    public ResponseEntity<List<Login>> loginDetails(){
+        return new ResponseEntity<>(loginService.getLoginDetails(), HttpStatus.OK);
+    }
 }

@@ -37,3 +37,9 @@ CREATE TABLE employee (
         ON UPDATE CASCADE
         ON DELETE SET NULL
 );
+
+CREATE TABLE login(
+    username varchar(50) not null,
+    password varchar(15) not null,
+    Primary key(userName)
+);

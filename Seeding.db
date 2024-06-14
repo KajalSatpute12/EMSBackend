@@ -89,3 +89,9 @@ UPDATE employee SET manager_id = 10 WHERE id = 11;
 UPDATE employee SET manager_id = 10 WHERE id = 12;
 UPDATE employee SET manager_id = 13 WHERE id = 14;
 UPDATE employee SET manager_id = 13 WHERE id = 15;
+
+insert into login values("chistopher@gmail.com", "Nolan@123");
+insert into login values("barry@gmail.com", "Barry@123");
+insert into login values("tim@gmail.com", "Tim@123");
+insert into login values("nick@gmail.com", "Nick@123");
+insert into login values("steve@gmail.com", "Steve@123");
