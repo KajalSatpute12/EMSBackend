@@ -1,13 +1,7 @@
 package com.ems.EmsService.Controller;
 
-import com.ems.EmsService.Entity.Employee;
-import com.ems.EmsService.Entity.Department;
-import com.ems.EmsService.Entity.Login;
-import com.ems.EmsService.Entity.Role;
-import com.ems.EmsService.Service.DepartmentService;
-import com.ems.EmsService.Service.EmployeeService;
-import com.ems.EmsService.Service.LoginService;
-import com.ems.EmsService.Service.RoleService;
+import com.ems.EmsService.Entity.*;
+import com.ems.EmsService.Service.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +26,9 @@ public class EmsServiceController {
 
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    ManagerDetails managerDetails;
 
     // Save employee Details
     @Operation(tags="Save Methods")
@@ -172,5 +169,11 @@ public class EmsServiceController {
     @GetMapping(path = "/getLoginDetails")
     public ResponseEntity<List<Login>> loginDetails(){
         return new ResponseEntity<>(loginService.getLoginDetails(), HttpStatus.OK);
+    }
+
+    @Operation(tags="Get Methods")
+    @GetMapping(path = "/getManagerDetails")
+    public ResponseEntity<List<Manager>> managerDetails(){
+        return new ResponseEntity<>(managerDetails.getManagerDetails(), HttpStatus.OK);
     }
 }
