@@ -4,6 +4,8 @@ package com.ems.EmsService.Service;
 import com.ems.EmsService.Entity.Employee;
 import com.ems.EmsService.Entity.Manager;
 import com.ems.EmsService.Entity.Role;
+import com.ems.EmsService.Repository.EmployeeRepo;
+import com.ems.EmsService.Repository.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +17,16 @@ import java.util.Objects;
 public class ManagerDetails {
 
     @Autowired
-    EmployeeService empService;
+    EmployeeRepo employeeRepo;
 
     @Autowired
-    RoleService roleService;
+    RoleRepo roleRepo;
 
     public List<Manager> getManagerDetails(){
 
         List<Manager> response = new ArrayList<>();
-        List<Employee> emp = empService.getEmployeeDetails();
-        List<Role> role = roleService.getRoleDetails();
+        List<Employee> emp = employeeRepo.findAll();
+        List<Role> role = roleRepo.findAll();
 
         List<Long> lst = role.stream()
                 .filter(r -> r.getTitle().toLowerCase().contains("manager"))
@@ -44,7 +46,4 @@ public class ManagerDetails {
 
         return response;
     }
-
-
-
 }

@@ -51,9 +51,9 @@ public class EmsServiceController {
     // Get all employee Details
     @Operation(tags="Get Methods")
     @GetMapping(path = "/getEmployeeDetails")
-    public ResponseEntity<List<Employee>> getEmployeeDetails(){
+    public ResponseEntity<List<EmployeeEntity>> getEmployeeDetails(){
 
-        List<Employee> response = employeeService.getEmployeeDetails();
+        List<EmployeeEntity> response = employeeService.getEmployeeDetails();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -141,9 +141,9 @@ public class EmsServiceController {
     // Get all Role Details
     @Operation(tags="Get Methods")
     @GetMapping(path = "/getRoleDetails")
-    public ResponseEntity<List<Role>> getRoleDetails(){
+    public ResponseEntity<List<RoleEntity>> getRoleDetails(){
 
-        List<Role> response = roleService.getRoleDetails();
+        List<RoleEntity> response = roleService.getRoleDetails();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

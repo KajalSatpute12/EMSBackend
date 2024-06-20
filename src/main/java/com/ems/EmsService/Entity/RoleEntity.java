@@ -1,7 +1,6 @@
 package com.ems.EmsService.Entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,24 +8,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "role")
-public class Role {
+public class RoleEntity {
 
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String title;
 
-    @Column
     private String salary;
 
-    @Column
-    private Long department_id;
-
+    private String department;
 }

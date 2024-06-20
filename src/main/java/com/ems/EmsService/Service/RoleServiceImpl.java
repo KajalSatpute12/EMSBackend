@@ -1,11 +1,14 @@
 package com.ems.EmsService.Service;
 
+import com.ems.EmsService.Entity.Department;
 import com.ems.EmsService.Entity.Role;
+import com.ems.EmsService.Entity.RoleEntity;
 import com.ems.EmsService.Exception.ResourceNotFoundException;
 import com.ems.EmsService.Repository.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,6 +16,9 @@ public class RoleServiceImpl implements RoleService{
 
     @Autowired
     RoleRepo repo;
+
+    @Autowired
+    DepartmentService dept;
 
     @Override
     public Role saveRoleDetails(Role role) {
@@ -31,8 +37,23 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<Role> getRoleDetails() {
-        return repo.findAll();
+    public List<RoleEntity> getRoleDetails() {
+
+        List<RoleEntity> response = new ArrayList<>();
+        List<Role> role = repo.findAll();
+
+        for(Role r: role){
+            RoleEntity re = new RoleEntity();
+            re.setId(r.getId());
+            re.setTitle(r.getTitle());
+            re.setSalary(r.getSalary());
+            Department d = dept.getDepartmentById(r.getDepartment_id());
+            re.setDepartment(d.getName());
+
+            response.add(re);
+        }
+
+        return response;
     }
 
     @Override

@@ -1,12 +1,15 @@
 package com.ems.EmsService.Service;
 
 import com.ems.EmsService.Entity.Employee;
+import com.ems.EmsService.Entity.EmployeeEntity;
+import com.ems.EmsService.Entity.Role;
 import com.ems.EmsService.Exception.ResourceNotFoundException;
 import com.ems.EmsService.Repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -14,6 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeRepo repo;
+
+    @Autowired
+    RoleService roleService;
 
     @Override
     public Employee saveEmployeeDetails(Employee emp){
@@ -37,9 +43,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeeDetails() {
+    public List<EmployeeEntity> getEmployeeDetails() {
 
-        return repo.findAll();
+        List<EmployeeEntity> response = new ArrayList<>();
+        List<Employee> emp = repo.findAll();
+        for(Employee e: emp){
+            EmployeeEntity ent = new EmployeeEntity();
+            ent.setId(e.getId());
+            ent.setName(e.getFirst_name().concat(" ").concat(e.getLast_name()));
+            ent.setEmail_id(e.getEmail_id());
+            Role role = roleService.getRoleById(e.getRole_id());
+            ent.setRole(role.getTitle());
+            Employee emp1 = getEmployeeById(e.getManager_id());
+            ent.setManager(emp1.getFirst_name().concat(" ").concat(emp1.getLast_name()));
+            response.add(ent);
+        }
+
+        return response;
     }
 
     @Override
