@@ -30,6 +30,9 @@ public class EmsServiceController {
     @Autowired
     ManagerDetails managerDetails;
 
+    @Autowired
+    RegisterService _register;
+
     // Save employee Details
     @Operation(tags="Save Methods")
     @PostMapping(path = "/saveEmployeeDetails")
@@ -175,5 +178,12 @@ public class EmsServiceController {
     @GetMapping(path = "/getManagerDetails")
     public ResponseEntity<List<Manager>> managerDetails(){
         return new ResponseEntity<>(managerDetails.getManagerDetails(), HttpStatus.OK);
+    }
+
+    @Operation(tags = "Save Methods")
+    @PostMapping(path = "/register")
+    public ResponseEntity<String> register(
+            Register register){
+        return new ResponseEntity<>(_register.createNewUser(register), HttpStatus.OK);
     }
 }

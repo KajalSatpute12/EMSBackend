@@ -3,6 +3,12 @@ CREATE DATABASE ems;
 
 USE ems;
 
+create table Register(username varchar(40),
+						password varchar(40),
+                        mailid varchar(20),
+                        empno bigInt,
+                        constraint primary key(username));
+
 CREATE TABLE department (
   id bigint NOT NULL AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
